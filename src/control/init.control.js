@@ -12,11 +12,12 @@ const InitConfigByType = async function (type, cb) {
         /* 没有找到配置文件 */
         console.log('');
         console.log(`WARING: ${type}.hlper.json exists already`.yellow);
+        console.log('');
     }
     inquirer.prompt([{
         type: 'input',
         name: 'isAdd',
-        message: `add ${type}.hlper.json ?(Y/N)`.yellow,
+        message: `add ${type}.hlper.json ?(Y/N||y/n)`.yellow,
         validate: function (input) {
             if (input === 'N' || input === 'Y' || input === 'n' || input === 'y' || !input) {
                 return true;
@@ -31,11 +32,12 @@ const InitConfigByType = async function (type, cb) {
             })
             return;
         }
+        console.log('');
+        console.log(`Cancel create ${type}.hlper.json`.yellow);
+        console.log('');
         cb({
             status: false
         })
-        console.log('');
-        console.log('cancel order'.yellow);
     })
 }
 module.exports = InitConfigByType;
