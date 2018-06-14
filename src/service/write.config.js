@@ -10,7 +10,7 @@ const WriteConfigByType = async function (type, data) {
     if (data) {
         value = data;
     } else {
-        console.log(`start get default config`.green);
+        console.log(`start get default config`.white);
         value = GetModel()[type];
     }
     const path = CreatePath(type);
