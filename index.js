@@ -5,37 +5,38 @@ const path = require('path');
 const program = require('commander');
 const inquirer = require('inquirer');
 const exec = require('child_process').exec;
-const GetConfigByType = require('./src/read.config');
-const config = {
-    type: 'c',
-    filename: 'template',
-    name: 'Template',
-    path: process.cwd(),
-    init: false,
-    map: false
-}
-
+const InitConfigByType = require('./src/control/init.control');
 program
     .version('0.0.1')
     .option(
         '-t, --type [value]',
         `choose type，
-        c component, 
-        m module, 
-        d directive, 
-        s mobk,
-        p pipe, n ngrx, 
-        a ngrx/action, 
-        spec-c component-spec with input ouput provider event, 
-        spec-s service-spec, 
-        spec-d directive-spec, 
-        spec-p pipe-spec, default component`,
+        c cdn.helper.json //only support 七牛 https://www.qiniu.com/, 
+        g github.helper.json, 
+        d docker.helper.json, 
+        l gitlab.helper.json`,
         'c'
     )
-    .option('-n, --file [value]', 'file name, default template', 'template')
-    .option('-p, --path [value]', 'need relative file path', '')
     .usage('<keywords>')
     .parse(process.argv);
-console.log(program.args);
-GetConfigByType('github');
 
+if (!program.args.length) {
+    console.log(`args error，only support 'init、create、publish'`.red);
+    program.help();
+} else {
+    if (program.args[0] === 'init') {
+        // 初始化默认配置
+        if(program.type){
+            console.log(`WARING: init not support -t，'ng-helper init' will create 'cdn.helper.json' and 'github.helper.json'`.yellow);
+            console.log();
+        }
+        InitConfigByType('cdn',(res)=>{
+            InitConfigByType('github',()=>{
+                console.log(``.green);
+                console.log(`ng-helper init done`.green);
+            })
+        });
+        // InitConfigByType('github');
+        return null;
+    }
+}

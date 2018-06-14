@@ -1,4 +1,5 @@
 const fs = require('fs');
+const ReduceData = require('./data.tool');
 const ReadFile = function (path) {
     return new Promise((resolve) => {
         fs.readFile(path, (err, data) => {
@@ -10,7 +11,7 @@ const ReadFile = function (path) {
             } else {
                 resolve({
                     status: true,
-                    data: JSON.parse(data)
+                    data: ReduceData(data)
                 });
             }
         });
@@ -18,7 +19,7 @@ const ReadFile = function (path) {
 }
 const WriteFile = async function (path, data) {
     return new Promise((resolve) => {
-        fs.writeFile(path, data, (err, data) => {
+        fs.writeFile(path, ReduceData(data), (err, data) => {
             if (err) {
                 resolve({
                     status: false
@@ -26,7 +27,7 @@ const WriteFile = async function (path, data) {
             } else {
                 resolve({
                     status: true,
-                    data: JSON.parse(data)
+                    data: ReduceData(data)
                 });
             }
         });
