@@ -6,6 +6,7 @@ const program = require('commander');
 const inquirer = require('inquirer');
 const exec = require('child_process').exec;
 const InitConfigByType = require('./src/control/init.control');
+const BuildWeb = require('./src/control/build.control');
 const tconfig = {
     c: 'cdn',
     g: 'github',
@@ -23,6 +24,12 @@ program
         l gitlab.helper.json //只支持创建内部项目模板，外网会拉取不到项目配置`,
         'c'
     )
+    .option(
+        '-e, --env [value]',
+        `choose env
+        other //ng build --prod -c other --build-optimizer other环境需要自己去angular.json/.../build/configurations/去配置, 
+        prod //ng build --prod --build-optimizer  prod可以使用默认配置`
+    )
     .usage('<keywords>')
     .parse(process.argv);
 
@@ -33,7 +40,7 @@ if (!program.args.length) {
     if (program.args[0] === 'init') {
         // 初始化默认配置
         if (program.type) {
-            console.log(`WARING: init not support -t，'ng-helper init' will create 'cdn.helper.json' and 'github.helper.json'`.yellow);
+            console.log(`WARING: init not support -t | -e，'ng-helper init' will create 'cdn.helper.json' and 'github.helper.json'`.yellow);
             console.log();
         }
         InitConfigByType('cdn', (res) => {
@@ -42,10 +49,10 @@ if (!program.args.length) {
                 console.log(`ng-helper init done`.green);
             })
         });
-        // InitConfigByType('github');
         return null;
     }
     if (program.args[0] === 'create') {
+        // 检查-t是否合法
         if (!tconfig[program.type]) {
             console.log(`ERROR: not support  -t ${program.type}`.red);
             console.log();
@@ -57,7 +64,19 @@ if (!program.args.length) {
             console.log(``.green);
             console.log(`ng-helper create -t ${program.type} done`.green);
         });
-        // InitConfigByType('github');
         return null;
+    }
+    if (program.args[0] === 'publish') {
+        /* 
+            1、检查是否安装了ng-cli工具
+            2、（获取ng build 命令）检查是否有cdn配置并校验是否合法
+            3、build（有cdn，无cdn）
+            4、github：检查是否有github配置并校验是否合法、创建发布流程(创建publish目录、拉取远程仓库、转移build文件到publish目录、git提交、git推送)
+               docker：暂无
+               gitlab：检查是否有gitlab配置并校验是否合法、创建发布流程(创建publish目录、拉取远程仓库、判断有无发布配置[没有则创建相应配置]、转移build文件到publish目录、git提交、git推送)
+        */
+        BuildWeb(program.env, (res) => {
+            console.log(res);
+        })
     }
 }

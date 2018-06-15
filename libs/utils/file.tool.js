@@ -11,7 +11,7 @@ const ReadFile = function (path) {
             } else {
                 resolve({
                     status: true,
-                    data: ReduceData(data)
+                    data: ReduceData(data,true)
                 });
             }
         });

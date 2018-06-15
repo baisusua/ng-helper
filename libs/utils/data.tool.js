@@ -1,13 +1,13 @@
-const ReduceData = function (data) {
+const ReduceData = function (data, isRead) {
     let value = data;;
-    if (typeof data == 'object') {
+    if (!isRead) {
         try {
             value = JSON.stringify(data);
         } catch (error) {
             value = data;
         }
     }
-    if (typeof data == 'string') {
+    if (isRead) {
         try {
             value = JSON.parse(data);
         } catch (error) {

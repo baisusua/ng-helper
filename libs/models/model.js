@@ -1,13 +1,17 @@
 const GetModel = function () {
     return {
         cdn: {
-            url:'xxx',
-            ak:'xxx',
-            bk:'xxx',
-            sk:'xxx'
+            "url": "",
+            "dirname": "ng-helper",
+            "ak": "",
+            "sk": "",
+            "bk": "",
+            "v":"0.0.1"
         },
         github: {
-
+            "remote": "https://xxxxxx.git",
+            "branch": "dev",
+            "ignore":["*.json","*.css","*.js","*.jpg","*.svg"]
         },
         docker: {
 
