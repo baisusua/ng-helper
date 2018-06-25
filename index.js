@@ -40,7 +40,6 @@ if (!program.args.length) {
     if (program.args[0] === 'init') {
         // 初始化默认配置
         if (program.type) {
-            console.log(`WARING: init not support -t | -e，'ng-helper init' will create 'cdn.helper.json' and 'github.helper.json'`.yellow);
             console.log();
         }
         InitConfigByType('cdn', (res) => {
