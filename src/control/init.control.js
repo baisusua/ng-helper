@@ -26,9 +26,7 @@ const InitConfigByType = async function (type, cb) {
     }]).then(async (answers) => {
         if (answers.isAdd === 'y' || answers.isAdd === 'Y') {
             const res = await WriteConfigByType(type, '')
-            cb({
-                status: true
-            })
+            cb(res)
             return;
         }
         console.log('');

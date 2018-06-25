@@ -6,6 +6,7 @@ const CreatePath = require('../../libs/utils/path.tool');
 const GetConfigData = async function (env) {
     console.log(`Start getting configuration files(cdn,github)`.cyan);
     console.log('');
+    let prod = 'prod';
     const cdnPath = CreatePath('cdn');
     const githubPath = CreatePath('github');
     const angularPath = CreatePath('angular');
@@ -22,6 +23,7 @@ const GetConfigData = async function (env) {
     }
     if (env) {
         order.build = `ng build --prod -c ${env} --build-optimizer`;
+        prod = env;
     } else {
         order.build = `ng build --prod --build-optimizer`;
     }
@@ -37,19 +39,19 @@ const GetConfigData = async function (env) {
         order.build = '';
     }
     if (cdnFile.status) {
-        if (cdnFile.data.url && cdnFile.data.ak && cdnFile.data.sk && cdnFile.data.bk) {
-            order.build = order.build?order.build + ` --base-href=${cdnFile.data.url}`:'';
-            if (cdnFile.data.v) {
-                order.build = order.build ? order.build + `${cdnFile.data.v}/` : '';
+        if (cdnFile.data[prod].url && cdnFile.data[prod].ak && cdnFile.data[prod].sk && cdnFile.data[prod].bk) {
+            order.build = order.build ? order.build + ` --base-href=${cdnFile.data[prod].url}` : '';
+            if (cdnFile.data[prod].v) {
+                order.build = order.build ? order.build + `${cdnFile.data[prod].v}/` : '';
             }
-            if (cdnFile.data.dirname) {
-                order.build = order.build ? order.build + `${cdnFile.data.dirname}/` : '';
+            if (cdnFile.data[prod].dirname) {
+                order.build = order.build ? order.build + `${cdnFile.data[prod].dirname}/` : '';
             }
         }
         order.cdn = cdnFile.data;
     }
     if (githubFile.status) {
-        order.github = githubFile.data;
+        order.github = githubFile.data[prod];
     }
     return order;
 }
