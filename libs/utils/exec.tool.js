@@ -25,12 +25,14 @@ const run = function (order, path) {
         child.on('close', (code) => {
             if (code === 0) {
                 console.log(colors.green(`run ${order} done`));
+                console.log('');
                 resolve({
                     status: true
                 });
             } else {
                 console.log(``);
-                console.log(colors.red(`run ${order} error code：' + ${code}`));
+                console.log(colors.red(`run ${order} error code: ${code}`));
+                console.log('');
                 resolve({
                     status: false
                 });

@@ -6,7 +6,6 @@ const WriteConfigByType = require('../service/write.config');
 
 /* 获取配置以及初始化配置文件 */
 const InitConfigByType = async function (type, cb) {
-    console.log(`Check if the ${type}.hlper.json file exists.`.cyan);
     const res = await GetConfigByType(type);
     if (res.status) {
         /* 没有找到配置文件 */

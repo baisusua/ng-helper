@@ -5,7 +5,6 @@ const CreatePath = require('../../libs/utils/path.tool');
 
 const GetConfigByType = async function (type) {
     console.log(`start get ${type} config`.cyan);
-    console.log('');
     const path = CreatePath(type);
     const file = await FlieHelper.FileStatus(path);
     if (file.status) {

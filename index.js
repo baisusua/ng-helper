@@ -3,10 +3,9 @@
 const colors = require('colors');
 const path = require('path');
 const program = require('commander');
-const inquirer = require('inquirer');
-const exec = require('child_process').exec;
 const InitConfigByType = require('./src/control/init.control');
 const BuildWeb = require('./src/control/build.control');
+const PushWeb = require('./src/control/git.control');
 const tconfig = {
     c: 'cdn',
     g: 'github',
@@ -76,7 +75,20 @@ if (!program.args.length) {
                gitlab：检查是否有gitlab配置并校验是否合法、创建发布流程(创建publish目录、拉取远程仓库、判断有无发布配置[没有则创建相应配置]、转移build文件到publish目录、git提交、git推送)
         */
         BuildWeb(program.env, (res) => {
-            console.log(res);
+            if (res.status) {
+                console.log(``);
+                PushWeb(program.env, (res) => {
+                    if (res.status) {
+                        console.log(``);
+                    } else {
+                        console.log(``);
+                        console.log(`push web error`.red);
+                    }
+                })
+            } else {
+                console.log(``);
+                console.log(`build web error`.red);
+            }
         })
     }
 }

@@ -9,7 +9,8 @@ const GetModel = function () {
             "v":"0.0.1"
         },
         github: {
-            "remote": "https://xxxxxx.git",
+            "remote": "https://xxxxxx/name.git",
+            "name": "name",
             "branch": "dev",
             "ignore":["*.json","*.css","*.js","*.jpg","*.svg"]
         },
