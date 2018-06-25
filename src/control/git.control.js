@@ -5,65 +5,63 @@ const GetConfigData = require('../service/order.config');
 const GitTask = async function (env, cb) {
     // 1、检查是否安装了git工具（感觉可以不用这一步）
     // 2、根据配置获取git order命令
-    // 3、push(clone、checkout、add、reset、commit、push)
+    // 3、push(init、checkout、remote、pull、copy、add、reset、commit、push、clean)
     const config = await GetConfigData(env);
     if (config.github) {
         const GitConfig = GitService.CreateGitOrder(config.github);
-        const clone = await GitService.GitRun(GitConfig.clone, config.outputPath);
-        if (!clone.status) {
-            cb(clone);
+        const init = await GitService.GitInit();
+        if (!init.status) {
+            cb(init);
             return;
         }
-        const mv = await GitService.GitRun(GitConfig.mv, config.outputPath);
-        if (!mv.status) {
-            cb(mv);
-            return;
-        }
-        const rmdir = await GitService.GitRun(GitConfig.rmdir, config.outputPath);
-        if (!rmdir.status) {
-            cb(rmdir);
-            return;
-        }
-        const head = await GitService.GitRun(GitConfig.head, config.outputPath);
-        if (!head.status) {
-            cb(head);
-            return;
-        }
-
-        const checkout = await GitService.GitRun(GitConfig.checkout, config.outputPath);
+        const checkout = await GitService.GitRun(GitConfig.checkout);
         if (!checkout.status) {
             cb(checkout);
             return;
         }
-        const add = await GitService.GitRun(GitConfig.add, config.outputPath);
+        const remote = await GitService.GitRun(GitConfig.remote);
+        if (!remote.status) {
+            cb(remote);
+            return;
+        }
+        const pull = await GitService.GitRun(GitConfig.pull);
+        if (!pull.status) {
+            cb(pull);
+            return;
+        }
+        const copy = await GitService.GitCopy(config.outputPath);
+        if (!copy.status) {
+            cb(copy);
+            return;
+        }
+        const add = await GitService.GitRun(GitConfig.add);
         if (!add.status) {
             cb(add);
             return;
         }
-
         if (GitConfig.reset) {
-            const reset = await GitService.GitRun(GitConfig.reset, config.outputPath);
+            const reset = await GitService.GitRun(GitConfig.reset);
             if (!reset.status) {
                 cb(reset);
                 return;
             }
-            const commit = await GitService.GitRun(GitConfig.commit, config.outputPath);
+            const commit = await GitService.GitRun(GitConfig.commit);
             if (!commit.status) {
                 cb(commit);
                 return;
             }
-            const push = await GitService.GitRun(GitConfig.push, config.outputPath);
+            const push = await GitService.GitRun(GitConfig.push);
             if (!push.status) {
                 cb(push);
                 return;
             }
         } else {
-            const commit = await GitService.GitRun(GitConfig.commit, config.outputPath);
+            const commit = await GitService.GitRun(GitConfig.commit);
             if (!commit.status) {
                 cb(commit);
                 return;
             }
-            const push = await GitService.GitRun(GitConfig.push, config.outputPath);
+            const push = await GitService.GitRun(GitConfig.push);
             if (!push.status) {
                 cb(push);
                 return;
@@ -75,4 +73,13 @@ const GitTask = async function (env, cb) {
         });
     }
 }
-module.exports = GitTask;
+const GitClean = async function (cb) {
+    const clean = await GitService.GitClean();
+    if (!clean.status) {
+        cb(clean);
+        return;
+    }
+
+}
+module.exports.GitTask = GitTask;
+module.exports.GitClean = GitClean;

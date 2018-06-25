@@ -78,13 +78,14 @@ if (!program.args.length) {
         BuildWeb(program.env, (res) => {
             if (res.status) {
                 console.log(``);
-                PushWeb(program.env, (res) => {
+                PushWeb.GitTask(program.env, (res) => {
                     if (res.status) {
                         console.log(``);
                     } else {
                         console.log(``);
                         console.log(`push web error`.red);
                     }
+                    PushWeb.GitClean();
                     UploadWeb(program.env,(res)=>{
                         // console.log(res);
                     })

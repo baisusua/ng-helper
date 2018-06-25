@@ -6,7 +6,7 @@ const UploadWeb = async function (env, cb) {
     const config = await GetConfigData(env);
     QiNiuService.CreateUploadList(config.cdn[env], config.outputPath, (res) => {
         cb(res);
-        QiNiuService.QiniuUpload(config.cdn[env].ak,config.cdn[env].sk,config.cdn[env].bk,res.data)
+        QiNiuService.QiniuUpload(config.cdn[env].ak,config.cdn[env].sk,config.cdn[env].bk,res.data,config.cdn[env].url)
     });
 }
 module.exports = UploadWeb;

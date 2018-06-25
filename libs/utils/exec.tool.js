@@ -32,7 +32,6 @@ const run = function (order, path) {
             } else {
                 console.log(``);
                 console.log(colors.red(`run ${order} error code: ${code}`));
-                console.log('');
                 resolve({
                     status: false
                 });

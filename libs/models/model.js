@@ -23,13 +23,11 @@ const GetModel = function () {
         github: {
             dev: {
                 "remote": "https://xxxxxx/name.git",
-                "name": "name",
                 "branch": "dev",
                 "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
             },
             prod: {
                 "remote": "https://xxxxxx/name.git",
-                "name": "name",
                 "branch": "master",
                 "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
             }
