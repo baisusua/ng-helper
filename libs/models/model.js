@@ -7,7 +7,8 @@ const GetModel = function () {
                 "ak": "",
                 "sk": "",
                 "bk": "",
-                "v": "0.0.1"
+                "v": "0.0.1",
+                "ignore": ["*.html"]
             },
             prod: {
                 "url": "",
@@ -15,7 +16,8 @@ const GetModel = function () {
                 "ak": "",
                 "sk": "",
                 "bk": "",
-                "v": "0.0.1"
+                "v": "0.0.1",
+                "ignore": ["*.html"]
             }
         },
         github: {

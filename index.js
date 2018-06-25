@@ -6,6 +6,7 @@ const program = require('commander');
 const InitConfigByType = require('./src/control/init.control');
 const BuildWeb = require('./src/control/build.control');
 const PushWeb = require('./src/control/git.control');
+const UploadWeb = require('./src/control/upload.control');
 const tconfig = {
     c: 'cdn',
     g: 'github',
@@ -84,6 +85,9 @@ if (!program.args.length) {
                         console.log(``);
                         console.log(`push web error`.red);
                     }
+                    UploadWeb(program.env,(res)=>{
+                        // console.log(res);
+                    })
                 })
             } else {
                 console.log(``);

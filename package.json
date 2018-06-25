@@ -17,14 +17,18 @@
   "author": "kround",
   "bin": {
     "ng-helper": "index.js"
-},
+  },
   "license": "ISC",
   "dependencies": {
     "colors": "^1.3.0",
     "commander": "^2.15.1",
     "fs": "0.0.1-security",
+    "glob": "^7.1.2",
     "inquirer": "^6.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "qiniu": "^7.2.0"
   },
-  "engines" : { "node" : ">=8.0.0" }
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }
