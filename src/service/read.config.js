@@ -4,14 +4,12 @@ const FlieHelper = require('../../libs/utils/file.tool');
 const CreatePath = require('../../libs/utils/path.tool');
 
 const GetConfigByType = async function (type) {
-    console.log(`start get ${type} config`.cyan);
     const path = CreatePath(type);
     const file = await FlieHelper.FileStatus(path);
     if (file.status) {
-        console.log(`get ${path} success`.green);
         return file;
     }
-    console.log(`get ${path} error`.red);
+    console.log(`read ${path} error`.red);
     return file;
 }
 

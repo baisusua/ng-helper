@@ -67,14 +67,6 @@ if (!program.args.length) {
         return null;
     }
     if (program.args[0] === 'publish') {
-        /* 
-            1、检查是否安装了ng-cli工具
-            2、（获取ng build 命令）检查是否有cdn配置并校验是否合法
-            3、build（有cdn，无cdn）
-            4、github：检查是否有github配置并校验是否合法、创建发布流程(创建publish目录、拉取远程仓库、转移build文件到publish目录、git提交、git推送)
-               docker：暂无
-               gitlab：检查是否有gitlab配置并校验是否合法、创建发布流程(创建publish目录、拉取远程仓库、判断有无发布配置[没有则创建相应配置]、转移build文件到publish目录、git提交、git推送)
-        */
         BuildWeb(program.env, (res) => {
             if (res.status) {
                 console.log(``);
@@ -86,9 +78,7 @@ if (!program.args.length) {
                         console.log(`push web error`.red);
                     }
                     PushWeb.GitClean();
-                    UploadWeb(program.env,(res)=>{
-                        // console.log(res);
-                    })
+                    UploadWeb(program.env);
                 })
             } else {
                 console.log(``);

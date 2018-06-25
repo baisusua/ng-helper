@@ -2,20 +2,20 @@ const GetModel = function () {
     return {
         cdn: {
             dev: {
-                "url": "",
+                "url": "http://xxxx/",
                 "dirname": "ng-helper",
-                "ak": "",
-                "sk": "",
-                "bk": "",
+                "ak": "xxx",
+                "sk": "xxx",
+                "bk": "xxx",
                 "v": "0.0.1",
                 "ignore": ["*.html"]
             },
             prod: {
-                "url": "",
+                "url": "http://xxxx/",
                 "dirname": "ng-helper",
-                "ak": "",
-                "sk": "",
-                "bk": "",
+                "ak": "xxx",
+                "sk": "xxx",
+                "bk": "xxx",
                 "v": "0.0.1",
                 "ignore": ["*.html"]
             }
@@ -24,12 +24,12 @@ const GetModel = function () {
             dev: {
                 "remote": "https://xxxxxx/name.git",
                 "branch": "dev",
-                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
+                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"]
             },
             prod: {
                 "remote": "https://xxxxxx/name.git",
                 "branch": "master",
-                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
+                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"]
             }
         },
         docker: {

@@ -4,7 +4,6 @@ const FlieHelper = require('../../libs/utils/file.tool');
 const CreatePath = require('../../libs/utils/path.tool');
 
 const GetConfigData = async function (env) {
-    console.log(`Start getting configuration files(cdn,github)`.cyan);
     console.log('');
     let prod = 'prod';
     const cdnPath = CreatePath('cdn');
@@ -30,7 +29,7 @@ const GetConfigData = async function (env) {
     if (angualrFile.status) {
         if (env) {
             if (!angualrFile.data.projects[angualrFile.data.defaultProject].architect.build.configurations[env]) {
-                console.log(`can not find ${env} config `.yellow);
+                console.log(`can not find ${env} configuration `.yellow);
             }
         }
         order.outputPath = angualrFile.data.projects[angualrFile.data.defaultProject].architect.build.options.outputPath;

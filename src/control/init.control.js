@@ -21,7 +21,7 @@ const InitConfigByType = async function (type, cb) {
             if (input === 'N' || input === 'Y' || input === 'n' || input === 'y' || !input) {
                 return true;
             }
-            return 'input Y/y或N/n'.red;
+            return 'input Y/N || y/n'.red;
         }
     }]).then(async (answers) => {
         if (answers.isAdd === 'y' || answers.isAdd === 'Y') {

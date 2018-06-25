@@ -1,11 +1,8 @@
 const colors = require('colors');
 const GitService = require('../service/github.run');
 const GetConfigData = require('../service/order.config');
-/* 获取配置以及初始化配置文件 */
+
 const GitTask = async function (env, cb) {
-    // 1、检查是否安装了git工具（感觉可以不用这一步）
-    // 2、根据配置获取git order命令
-    // 3、push(init、checkout、remote、pull、copy、add、reset、commit、push、clean)
     const config = await GetConfigData(env);
     if (config.github) {
         const GitConfig = GitService.CreateGitOrder(config.github);
