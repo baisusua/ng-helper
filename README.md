@@ -4,6 +4,7 @@
 - 支持GIT上传打包文件。
 
 #####使用说明
+
 1. 安装
     npm install ng-helper -g
 1. 初始化配置文件
@@ -52,6 +53,7 @@
 ```
 
 ##### TYPE类型
+
 | **命令**  |**文件配置**   |**备注**   |
 | ------------ | ------------ | ------------ |
 | **ng-helper create**  |  *cdn.helper.json* | CDN配置项  |
@@ -59,7 +61,9 @@
 | **ng-helper create -t g**  | *github .helper.json*   | Git配置项  |
 | **ng-helper create -t d**  | *docker.helper.json*   | 暂时不支持  |
 | **ng-helper create -t l**  | *gitlab.helper.json*   | 暂时不支持  |
+
 #####配置说明
+
 1. CDN配置项--cdn.helper.json
 ```{
 	"dev": {
@@ -99,4 +103,5 @@
 ```
 
 #####备注
+
 暂不支持docker和gitlab部署
