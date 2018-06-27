@@ -1,7 +1,7 @@
 const expect = require('expect')
 const GetModel = require('../../libs/models/model');
 
-describe('get default model', () => {
+describe('Test get default model', () => {
     it('should return default model', (next) => {
         expect(GetModel()).toMatchObject({
             cdn: {
