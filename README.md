@@ -26,28 +26,28 @@
 	使用非 ***prod*** 配置项，请在 ***angular.json***  中提前进行配置，例如下面的 ***dev***  配置项
 ```
     {
-    		"projects": {
-    			"projec_name": {
-    				"architect": {
-    					"build": {
-    						"configurations": {
-    							"production": {
-    								"fileReplacements": [{
-    									"replace": "src/environments/environment.ts",
-    									"with": "src/environments/environment.prod.ts"
-    								}]
-    							},
-    							"dev": {
-    								"fileReplacements": [{
-    									"replace": "src/environments/environment.ts",
-    									"with": "src/environments/environment.dev.ts"
-    								}]
-    							}
+    	"projects": {
+    		"projec_name": {
+    			"architect": {
+    				"build": {
+    					"configurations": {
+    						"production": {
+    							"fileReplacements": [{
+    								"replace": "src/environments/environment.ts",
+    								"with": "src/environments/environment.prod.ts"
+    							}]
+    						},
+							"dev": {
+    							"fileReplacements": [{
+    								"replace": "src/environments/environment.ts",
+    								"with": "src/environments/environment.dev.ts"
+    							}]
     						}
     					}
     				}
     			}
     		}
+    	}
     }
 ```
 
@@ -62,39 +62,39 @@
 #####配置说明
 1. CDN配置项--cdn.helper.json
 ```{
-		"dev": {
-			"url": "http://xxxxxxxx/",
-			"dirname": "ng-helper-dev",
-			"ak": "xxxxxxxx",
-			"sk": "xxxxxxxx",
-			"bk": "xxxxxxxx",
-			"v": "0.0.1",
-			"ignore": ["*.html"]
-		},
-		"prod": {
-			"url": "http://xxxxxxxx/",
-			"dirname": "ng-helper-prod",
-			"ak": "xxxxxxxx",
-			"sk": "xxxxxxxx",
-			"bk": "xxxxxxxx",
-			"v": "0.0.1",
-			"ignore": ["*.html"]
-		}
+	"dev": {
+		"url": "http://xxxxxxxx/",
+		"dirname": "ng-helper-dev",
+		"ak": "xxxxxxxx",
+		"sk": "xxxxxxxx",
+		"bk": "xxxxxxxx",
+		"v": "0.0.1",
+		"ignore": ["*.html"]
+	},
+	"prod": {
+		"url": "http://xxxxxxxx/",
+		"dirname": "ng-helper-prod",
+		"ak": "xxxxxxxx",
+		"sk": "xxxxxxxx",
+		"bk": "xxxxxxxx",
+		"v": "0.0.1",
+		"ignore": ["*.html"]
+	}
 }
 ```
 1. Git配置项--github .helper.json
 ```
 {
-		"dev": {
-			"remote": "xxxxxxxxx",
-			"branch": "dev",
-			"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
-		},
-		"prod": {
-			"remote": "xxxxxxxxx",
-			"branch": "master",
-			"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
-		}
+	"dev": {
+		"remote": "xxxxxxxxx",
+		"branch": "dev",
+		"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
+	},
+	"prod": {
+		"remote": "xxxxxxxxx",
+		"branch": "master",
+		"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
+	}
 }
 ```
 
