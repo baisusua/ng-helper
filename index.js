@@ -28,7 +28,8 @@ program
         '-e, --env [value]',
         `choose env
         other //ng build --prod -c other --build-optimizer other环境需要自己去angular.json/.../build/configurations/去配置, 
-        prod //ng build --prod --build-optimizer  prod可以使用默认配置`
+        production //ng build --prod --build-optimizer  production可以使用默认配置`,
+        'production'
     )
     .usage('<keywords>')
     .parse(process.argv);

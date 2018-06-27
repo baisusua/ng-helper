@@ -10,7 +10,7 @@ const GetModel = function () {
                 "v": "0.0.1",
                 "ignore": ["*.html"]
             },
-            prod: {
+            production: {
                 "url": "http://xxxx/",
                 "dirname": "ng-helper",
                 "ak": "xxx",
@@ -26,7 +26,7 @@ const GetModel = function () {
                 "branch": "dev",
                 "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"]
             },
-            prod: {
+            production: {
                 "remote": "https://xxxxxx/name.git",
                 "branch": "master",
                 "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"]

@@ -5,7 +5,7 @@ const CreatePath = require('../../libs/utils/path.tool');
 
 const GetConfigData = async function (env) {
     console.log('');
-    let prod = 'prod';
+    let prod = 'production';
     const cdnPath = CreatePath('cdn');
     const githubPath = CreatePath('github');
     const angularPath = CreatePath('angular');

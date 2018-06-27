@@ -19,12 +19,12 @@
 1. 打包发布
 	1. 默认打包发布命令
 	执行  `  ng-helper publish  `
-	使用 ***prod*** 配置项
+	使用 ***production*** 配置项
 	
 	1. 自定义打包发布命令
 	执行  `  ng-helper publish  -e ENV`
 	使用 ***ENV*** 配置项
-	使用非 ***prod*** 配置项，请在 ***angular.json***  中提前进行配置，例如下面的 ***dev***  配置项
+	使用非 ***production*** 配置项，请在 ***angular.json***  中提前进行配置，例如下面的 ***dev***  配置项
 ```
     {
     	"projects": {
@@ -75,7 +75,7 @@
 		"v": "0.0.1",
 		"ignore": ["*.html"]
 	},
-	"prod": {
+	"production": {
 		"url": "http://xxxxxxxx/",
 		"dirname": "ng-helper-prod",
 		"ak": "xxxxxxxx",
@@ -94,7 +94,7 @@
 		"branch": "dev",
 		"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
 	},
-	"prod": {
+	"production": {
 		"remote": "xxxxxxxxx",
 		"branch": "master",
 		"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
