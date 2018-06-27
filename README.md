@@ -1,4 +1,4 @@
-### ng-helper
+### ng-helper			[![build:passed](https://travis-ci.org/baisusua/ng-helper.svg?branch=master "build:passed")](https://travis-ci.org/baisusua/ng-helper.svg?branch=master "build:passed")
 
 - 支持CDN上传打包文件。
 - 支持GIT上传打包文件。
