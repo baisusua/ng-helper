@@ -74,14 +74,14 @@ if (!program.args.length) {
                         console.log(``);
                     } else {
                         console.log(``);
-                        console.log(`push web error`.red);
+                        console.log(`Push web error`.red);
                     }
                     PushWeb.GitClean();
                     UploadWeb(program.env);
                 })
             } else {
                 console.log(``);
-                console.log(`build web error`.red);
+                console.log(`Build web error`.red);
             }
         })
     }
