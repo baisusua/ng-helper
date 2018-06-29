@@ -1,6 +1,6 @@
 {
   "name": "ng-helper",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "基于Angular CLI的发布工具",
   "main": "index.js",
   "directories": {
@@ -10,10 +10,16 @@
     "test": "node ./node_modules/mocha/bin/_mocha --timeout 10000 --bail --recursive"
   },
   "keywords": [
+    "angular",
     "ng",
+    "build",
     "git",
     "cdn"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baisusua/ng-helper"
+  },
   "author": "kround",
   "bin": {
     "ng-helper": "index.js"
