@@ -26,7 +26,7 @@ const GitTask = async function (env, cb) {
             cb(pull);
             return;
         }
-        const copy = await GitService.GitCopy(config.outputPath);
+        const copy = await GitService.GitCopy(config.outputPath,config.github.dirname);
         if (!copy.status) {
             cb(copy);
             return;

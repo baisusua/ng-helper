@@ -1,5 +1,4 @@
-### ng-helper			[![build:passed](https://travis-ci.org/baisusua/ng-helper.svg?branch=master "build:passed")](https://travis-ci.org/baisusua/ng-helper.svg?branch=master "build:passed")
-
+### ng-helper
 - 支持CDN上传打包文件。
 - 支持GIT上传打包文件。
 
@@ -67,7 +66,7 @@
 1. CDN配置项--cdn.helper.json
 ```{
 	"dev": {
-		"url": "http://xxxxxxxx/",
+		"url": "http://xxxxxxxx/",  //资源地址 url+"v/dirname/"+file
 		"dirname": "ng-helper-dev",
 		"ak": "xxxxxxxx",
 		"sk": "xxxxxxxx",
@@ -92,11 +91,13 @@
 	"dev": {
 		"remote": "xxxxxxxxx",
 		"branch": "dev",
+		"dirname": "dist",  //git仓库下哪一目录
 		"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
 	},
 	"production": {
 		"remote": "xxxxxxxxx",
 		"branch": "master",
+		"dirname": "dist",  //git仓库下哪一目录
 		"ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg"]
 	}
 }

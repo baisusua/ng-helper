@@ -24,12 +24,14 @@ const GetModel = function () {
             dev: {
                 "remote": "https://xxxxxx/name.git",
                 "branch": "dev",
-                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"]
+                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"],
+                "dirname":"dist"
             },
             production: {
                 "remote": "https://xxxxxx/name.git",
                 "branch": "master",
-                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"]
+                "ignore": ["*.json", "*.css", "*.js", "*.jpg", "*.svg", "*.txt"],
+                "dirname":"dist"
             }
         },
         docker: {

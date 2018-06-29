@@ -4,8 +4,9 @@ const GitInit = async function () {
     const res = await ExecTool.run(`git init ./push`);
     return res;
 }
-const GitCopy = async function (path) {
-    const res = await ExecTool.run(`cp -r ./${path}/* ./push`);
+const GitCopy = async function (path, dirname) {
+    const order = dirname ? `cp -r ./${path}/* ./push/${dirname}` : `cp -r ./${path}/* ./push`;
+    const res = await ExecTool.run(order);
     return res;
 }
 const GitRun = async function (order) {
