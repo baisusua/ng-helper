@@ -55,7 +55,7 @@ if (!program.args.length) {
         // 检查-t是否合法
         if (!tconfig[program.type]) {
             console.log(`ERROR: not support  -t ${program.type}`.red);
-            console.log();
+            console.log(``);
             program.help();
             return;
         }
@@ -69,7 +69,6 @@ if (!program.args.length) {
     if (program.args[0] === 'publish') {
         BuildWeb(program.env, (res) => {
             if (res.status) {
-                console.log(``);
                 PushWeb.GitTask(program.env, (res) => {
                     if (res.status) {
                         console.log(``);

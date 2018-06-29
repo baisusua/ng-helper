@@ -26,7 +26,7 @@ const GitTask = async function (env, cb) {
             cb(pull);
             return;
         }
-        const copy = await GitService.GitCopy(config.outputPath,config.github.dirname);
+        const copy = await GitService.GitCopy(config.outputPath, config.github.dirname);
         if (!copy.status) {
             cb(copy);
             return;
@@ -38,20 +38,13 @@ const GitTask = async function (env, cb) {
         }
         if (GitConfig.reset) {
             const reset = await GitService.GitRun(GitConfig.reset);
-            if (!reset.status) {
-                cb(reset);
-                return;
-            }
             const commit = await GitService.GitRun(GitConfig.commit);
             if (!commit.status) {
                 cb(commit);
                 return;
             }
             const push = await GitService.GitRun(GitConfig.push);
-            if (!push.status) {
-                cb(push);
-                return;
-            }
+            cb(push);
         } else {
             const commit = await GitService.GitRun(GitConfig.commit);
             if (!commit.status) {
@@ -59,10 +52,7 @@ const GitTask = async function (env, cb) {
                 return;
             }
             const push = await GitService.GitRun(GitConfig.push);
-            if (!push.status) {
-                cb(push);
-                return;
-            }
+            cb(push);
         }
     } else {
         cb({

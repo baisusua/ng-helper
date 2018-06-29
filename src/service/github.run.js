@@ -5,9 +5,11 @@ const GitInit = async function () {
     return res;
 }
 const GitCopy = async function (path, dirname) {
-    const order = dirname ? `cp -r ./${path}/* ./push/${dirname}` : `cp -r ./${path}/* ./push`;
-    const res = await ExecTool.run(order);
-    return res;
+    const deleteorder = dirname ? `rm -rf ./push/${dirname}/**` : `rm -rf ./push/**`;
+    const addorder = dirname ? `cp -rf ./${path}/** ./push/${dirname}/` : `cp -r ./${path}/** ./push/`;
+    const deleteres = await ExecTool.run(deleteorder);
+    const addres = await ExecTool.run(addorder);
+    return addres;
 }
 const GitRun = async function (order) {
     if (order) {
@@ -19,13 +21,13 @@ const GitRun = async function (order) {
     }
 }
 const GitClean = async function () {
-    const res = await ExecTool.run(`rm -rf push`);
+    const res = await ExecTool.run(`rm -rf ./push`);
     return res;
 }
 
 const CreateGitOrder = function (config) {
     const cb = {
-        add: `git add -A`,
+        add: `git add -A -f`,
         reset: '',
         checkout: `git checkout -b ${config.branch}`,
         commit: `git commit -m ${JSON.stringify(new Date())}`,
@@ -34,7 +36,7 @@ const CreateGitOrder = function (config) {
         push: `git push origin ${config.branch}`
     }
     if (config.ignore && config.ignore.length > 0) {
-        cb.reset = `git reset ` + '\\' + config.ignore.join(` `);
+        cb.reset = `git rm --cached ` + '\\' + config.ignore.join(`  \\`);
     }
     return cb;
 }
