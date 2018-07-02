@@ -5,7 +5,8 @@ const run = function (order, path) {
     return new Promise((resolve) => {
         console.log(`Start run ${order}`.cyan);
         const child = exec(order, {
-            cwd: path ? path : publicPath
+            cwd: path ? path : publicPath,
+            maxBuffer:2000*1024
         }, (error, stdout, stderr) => {
             if (error) {
                 console.log(`Error message`.red);
