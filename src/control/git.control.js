@@ -37,7 +37,9 @@ const GitTask = async function (env, cb) {
             return;
         }
         if (GitConfig.reset) {
-            const reset = await GitService.GitRun(GitConfig.reset);
+            for (let i = 0; i < GitConfig.reset.length; i++) {
+                await GitService.GitRun(GitConfig.reset[i]);
+            }
             const commit = await GitService.GitRun(GitConfig.commit);
             if (!commit.status) {
                 cb(commit);

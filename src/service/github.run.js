@@ -36,7 +36,10 @@ const CreateGitOrder = function (config) {
         push: `git push origin ${config.branch}`
     }
     if (config.ignore && config.ignore.length > 0) {
-        cb.reset = `git rm --cached ` + '\\' + config.ignore.join(`  \\`);
+        cb.reset = [];
+        config.ignore.forEach((item) => {
+            cb.reset.push(`git rm --cached ` + '\\' + item);
+        });
     }
     return cb;
 }
