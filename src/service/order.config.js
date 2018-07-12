@@ -39,7 +39,7 @@ const GetConfigData = async function (env) {
     }
     if (cdnFile.status) {
         if (cdnFile.data[prod].url && cdnFile.data[prod].ak && cdnFile.data[prod].sk && cdnFile.data[prod].bk) {
-            order.build = order.build ? order.build + ` --base-href=${cdnFile.data[prod].url}` : '';
+            order.build = order.build ? order.build + ` --deploy-url=${cdnFile.data[prod].url}` : '';
             if (cdnFile.data[prod].v) {
                 order.build = order.build ? order.build + `${cdnFile.data[prod].v}/` : '';
             }
