@@ -7,7 +7,7 @@ const QiniuUpload = function (ak, sk, bk, list, url) {
     const config = QiNiuTool(ak, sk, bk);
     list.forEach((item, index) => {
         config.uploadFile(config.uploadToken, item.key, item.path, url, function (config) {
-            
+
         })
     });
 }
@@ -26,10 +26,10 @@ const CreateUploadList = function (config, path, cb) {
                 if (config.ignore && config.ignore.length > 0) {
                     config.ignore.forEach((item, s) => {
                         if (file.indexOf(item.replace('*', '')) == -1) {
-                            const a = file.split('/');
+                            const a = file.split(path);
                             list.push({
                                 path: file,
-                                key: `${config.v}/${config.dirname}/` + a[a.length - 1]
+                                key: `${config.v}/${config.dirname}` + a[1]
                             })
                         }
                     })
