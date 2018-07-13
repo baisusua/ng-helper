@@ -1,6 +1,7 @@
 const colors = require('colors');
 const GitService = require('../service/github.run');
 const GetConfigData = require('../service/order.config');
+const replace = require('replace-in-file');
 
 const GitTask = async function (env, cb) {
     const config = await GetConfigData(env);
@@ -26,6 +27,37 @@ const GitTask = async function (env, cb) {
             cb(pull);
             return;
         }
+
+        /* 检查是否需要上传CDN */
+        if (config.cdn) {
+            let cndurl;
+            if (config.cdn[env].url && config.cdn[env].ak && config.cdn[env].sk && config.cdn[env].bk) {
+                cndurl = config.cdn[env].url;
+                if (config.cdn[env].v) {
+                    cndurl = cndurl ? cndurl + `${config.cdn[env].v}/` : '';
+                }
+                if (config.cdn[env].dirname) {
+                    cndurl = cndurl ? cndurl + `${config.cdn[env].dirname}/` : '';
+                }
+            };
+            if (cndurl) {
+                console.log('');
+                console.log(`Start run replace img src`.cyan);
+                const changes = await replace({
+                    files: [
+                        config.outputPath + '/*.js',
+                        config.outputPath + '/*.css'
+                    ],
+                    from: (file) => new RegExp('./assets/', 'g'),
+                    to: cndurl + 'assets/',
+                });
+                console.log('');
+                console.log(`Run replace img src done. Replace: ${changes.length}`.green);
+                console.log('');
+            }
+        }
+
+        /* 检查是否需要上传CDN */
         const copy = await GitService.GitCopy(config.outputPath, config.github.dirname);
         if (!copy.status) {
             cb(copy);

@@ -1,6 +1,6 @@
 {
   "name": "ng-helper",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "基于Angular CLI的发布工具",
   "main": "index.js",
   "directories": {
@@ -32,7 +32,8 @@
     "glob": "^7.1.2",
     "inquirer": "^6.0.0",
     "path": "^0.12.7",
-    "qiniu": "^7.2.1"
+    "qiniu": "^7.2.1",
+    "replace-in-file": "^3.4.0"
   },
   "engines": {
     "node": ">=8.0.0"
