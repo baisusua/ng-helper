@@ -51,8 +51,7 @@ const GitTask = async function (env, cb) {
                     from: (file) => new RegExp('./assets/', 'g'),
                     to: cndurl + 'assets/',
                 });
-                console.log('');
-                console.log(`Run replace img src done. Replace: ${changes.length}`.green);
+                console.log(`run replace img src done. Replace: ${changes.length}`.green);
                 console.log('');
             }
         }
