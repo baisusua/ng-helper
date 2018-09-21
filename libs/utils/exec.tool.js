@@ -1,22 +1,19 @@
 const colors = require('colors');
-const exec = require('child_process').exec;
+const { spawn } = require('child_process');
 const publicPath = process.cwd();
 const run = function (order, path) {
     return new Promise((resolve) => {
         console.log(`Start run ${order}`.cyan);
-        const child = exec(order, {
-            cwd: path ? path : publicPath,
-            maxBuffer:2000*1024
-        }, (error, stdout, stderr) => {
-            if (error) {
-                console.log(`Error message`.red);
-                console.log(colors.yellow(error));
-                resolve({
-                    status: false
-                });
-                return;
-            }
-        });
+        const [program, ...args] = order.split(' ');
+        const child = spawn(
+            program,
+            args,
+            {
+                cwd: path ? path : publicPath,
+                stdio: 'inherit',
+                maxBuffer: 2000 * 1024
+            },
+        );
         child.stdout.on('data', (data) => {
             console.log(colors.white(data));
         });
