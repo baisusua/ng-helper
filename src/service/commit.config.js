@@ -1,5 +1,6 @@
 const colors = require('colors');
 const shell = require('shelljs');
+const path = require('path');
 
 const publicPath = process.cwd();
 const FlieHelper = require('../../libs/utils/file.tool');
@@ -40,8 +41,8 @@ const GetPackageVersion = async function(isTag) {
             version: '获取package版本号失败'
         };
     }
-    const path = path.join(publicPath, `./package.json`);
-    const file = await FlieHelper.FileStatus(path);
+    const paths = path.join(publicPath, `./package.json`);
+    const file = await FlieHelper.FileStatus(paths);
     if (file.status) {
         return {
             version: file.data.version ? file.data.version : '获取package版本号失败'
