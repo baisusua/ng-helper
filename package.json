@@ -33,7 +33,8 @@
     "inquirer": "^6.0.0",
     "path": "^0.12.7",
     "qiniu": "^7.2.1",
-    "replace-in-file": "^3.4.0"
+    "replace-in-file": "^3.4.0",
+    "shelljs": "^0.8.2"
   },
   "engines": {
     "node": ">=8.0.0"

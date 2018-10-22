@@ -7,6 +7,7 @@ const InitConfigByType = require('./src/control/init.control');
 const BuildWeb = require('./src/control/build.control');
 const PushWeb = require('./src/control/git.control');
 const UploadWeb = require('./src/control/upload.control');
+const GetCommitMessage = require('./src/control/commit.control');
 const tconfig = {
     c: 'cdn',
     g: 'github',
@@ -48,7 +49,6 @@ program
     .option(
         '-m, --message [value]',
         `发布时提交信息类型 默认为源代码版本信息+commit信息
-        date //时间戳类型+commit信息, 
         version //源代码版本信息+commit信息, 
         commit //只有源代码最新的提交信息`,
         'version'
@@ -96,22 +96,24 @@ if (!program.args.length) {
         return null;
     }
     if (program.args[0] === 'publish') {
-        BuildWeb(program.env, (res) => {
-            if (res.status) {
-                PushWeb.GitTask(program.env, (res) => {
-                    if (res.status) {
-                        console.log(``);
-                    } else {
-                        console.log(``);
-                        console.log(`Push web error`.red);
-                    }
-                    PushWeb.GitClean();
-                    UploadWeb(program.env);
-                })
-            } else {
-                console.log(``);
-                console.log(`Build web error`.red);
-            }
+        GetCommitMessage(program.message, (message) => {
+            BuildWeb(program.env, (res) => {
+                if (res.status) {
+                    PushWeb.GitTask(program.env, message, (res) => {
+                        if (res.status) {
+                            console.log(``);
+                        } else {
+                            console.log(``);
+                            console.log(`Push web error`.red);
+                        }
+                        PushWeb.GitClean();
+                        UploadWeb(program.env);
+                    })
+                } else {
+                    console.log(``);
+                    console.log(`Build web error`.red);
+                }
+            })
         })
     }
 }

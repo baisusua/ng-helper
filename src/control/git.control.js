@@ -3,9 +3,12 @@ const GitService = require('../service/github.run');
 const GetConfigData = require('../service/order.config');
 const replace = require('replace-in-file');
 
-const GitTask = async function (env, cb) {
+const GitTask = async function(env, message, cb) {
     const config = await GetConfigData(env);
     if (config.github) {
+        if (message) {
+            config.github['message'] = message;
+        }
         const GitConfig = GitService.CreateGitOrder(config.github);
         const init = await GitService.GitInit();
         if (!init.status) {
@@ -93,7 +96,7 @@ const GitTask = async function (env, cb) {
         });
     }
 }
-const GitClean = async function (cb) {
+const GitClean = async function(cb) {
     const clean = await GitService.GitClean();
     if (!clean.status) {
         cb(clean);
