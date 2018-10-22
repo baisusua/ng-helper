@@ -1,6 +1,6 @@
 {
   "name": "ng-helper",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "基于Angular CLI的发布工具",
   "main": "index.js",
   "directories": {
