@@ -14,7 +14,7 @@ const tconfig = {
     l: 'gitlab'
 }
 program
-    .version('1.2.0')
+    .version(require('./package.json').version)
     .option(
         '-t, --type [value]',
         `choose type，
