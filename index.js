@@ -31,6 +31,35 @@ program
         production //ng build --prod --build-optimizer  production可以使用默认配置`,
         'production'
     )
+    .option(
+        '-tag, --dist-tag [value]',
+        `选择是否给源代码打tag和升级版本号，默认开启
+        false //关闭给源代码打tag和升级版本号的功能, 
+        true //开启给源代码打tag和升级版本号的功能`,
+        'true'
+    )
+    .option(
+        '-o, --open [value]',
+        `选择打包完成后是否自动打开发布页面的功能，默认开启
+        false //关闭发布完成后自动打开发布页的功能, 
+        true //开启发布完成后自动打开发布页的功能`,
+        'true'
+    )
+    .option(
+        '-m, --message [value]',
+        `发布时提交信息类型 默认为源代码版本信息+commit信息
+        date //时间戳类型+commit信息, 
+        version //源代码版本信息+commit信息, 
+        commit //只有源代码最新的提交信息`,
+        'version'
+    )
+    .option(
+        '-s, --show [value]',
+        `是否给build出来的项目添加调试信息，项目控制台会输出提交信息 默认开启
+        false //关闭添加调试信息功能, 
+        true //开启添加调试信息功能`,
+        'true'
+    )
     .usage('<keywords>')
     .parse(process.argv);
 
