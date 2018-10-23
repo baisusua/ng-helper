@@ -2,19 +2,19 @@ const QiNiuTool = require('../../libs/utils/qiniu.tool');
 const colors = require('colors');
 const glob = require('glob');
 const publicPath = process.cwd();
-const QiniuUpload = function (ak, sk, bk, list, url) {
+const QiniuUpload = function(ak, sk, bk, list, url, isZone) {
     console.log(`Total: ${list.length}`.cyan);
     const config = QiNiuTool(ak, sk, bk);
     list.forEach((item, index) => {
-        config.uploadFile(config.uploadToken, item.key, item.path, url, function (config) {
+        config.uploadFile(config.uploadToken, item.key, item.path, url, isZone, function(config) {
 
         })
     });
 }
-const CreateUploadList = function (config, path, cb) {
+const CreateUploadList = function(config, path, cb) {
     glob(`${publicPath}/${path}/**`, {
         nodir: true
-    }, function (err, files) {
+    }, function(err, files) {
         if (err) {
             cb({
                 status: false,

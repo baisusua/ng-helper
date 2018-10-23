@@ -6,7 +6,7 @@ const UploadWeb = async function (env) {
     const config = await GetConfigData(env);
     if(config.cdn){
         QiNiuService.CreateUploadList(config.cdn[env], config.outputPath, (res) => {
-            QiNiuService.QiniuUpload(config.cdn[env].ak,config.cdn[env].sk,config.cdn[env].bk,res.data,config.cdn[env].url)
+            QiNiuService.QiniuUpload(config.cdn[env].ak,config.cdn[env].sk,config.cdn[env].bk,res.data,config.cdn[env].url,config.cdn[env].zone)
         });
     }else{
         console.log(``);
