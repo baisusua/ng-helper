@@ -99,7 +99,7 @@ if (!program.args.length) {
         GetCommitMessage(program.message, (message) => {
             BuildWeb(program.env, (res) => {
                 if (res.status) {
-                    PushWeb.GitTask(program.env, message, (res) => {
+                    PushWeb.GitTask(program.env, message, program.open, program.show, (res) => {
                         if (res.status) {
                             console.log(``);
                         } else {
