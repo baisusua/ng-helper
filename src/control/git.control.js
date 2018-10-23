@@ -36,22 +36,27 @@ const GitTask = async function(env, message, isOPen, isSHow, cb) {
         if (message) {
             config.github['message'] = message;
         }
+        /* 生成git命令 */
         const GitConfig = GitService.CreateGitOrder(config.github);
+        /* 初始化git仓库 */
         const init = await GitService.GitInit();
         if (!init.status) {
             cb(init);
             return;
         }
+        /* 切换分支 */
         const checkout = await GitService.GitRun(GitConfig.checkout);
         if (!checkout.status) {
             cb(checkout);
             return;
         }
+        /* 添加远程分支 */
         const remote = await GitService.GitRun(GitConfig.remote);
         if (!remote.status) {
             cb(remote);
             return;
         }
+        /* 拉取远程仓库 */
         const pull = await GitService.GitRun(GitConfig.pull);
         if (!pull.status) {
             cb(pull);
@@ -62,7 +67,7 @@ const GitTask = async function(env, message, isOPen, isSHow, cb) {
         if (isSHow) {
             console.log('');
             console.log(`Start add console message`.cyan);
-            const changes = await replace({
+            const addinfo = await replace({
                 files: [
                     config.outputPath + '/index.html'
                 ],
@@ -101,17 +106,19 @@ const GitTask = async function(env, message, isOPen, isSHow, cb) {
             }
         }
 
-        /* 检查是否需要上传CDN */
+        /* 删除旧的文件并拷贝新的build文件 */
         const copy = await GitService.GitCopy(config.outputPath, config.github.dirname);
         if (!copy.status) {
             cb(copy);
             return;
         }
+        /* 保存修改信息 */
         const add = await GitService.GitRun(GitConfig.add);
         if (!add.status) {
             cb(add);
             return;
         }
+        /* 是否要忽略一些文件 */
         if (GitConfig.reset) {
             for (let i = 0; i < GitConfig.reset.length; i++) {
                 await GitService.GitRun(GitConfig.reset[i]);
@@ -152,4 +159,3 @@ const GitClean = async function(cb) {
 }
 module.exports.GitTask = GitTask;
 module.exports.GitClean = GitClean;
-OpenRemote('git@ssh-gitlab.jpushoa.com:frontend-publish/op-server-frontend.git')

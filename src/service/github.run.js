@@ -5,8 +5,8 @@ const GitInit = async function() {
     return res;
 }
 const GitCopy = async function(path, dirname) {
-    const deleteorder = dirname ? `rm -rf ./push/${dirname}/**` : `rm -rf ./push/**`;
-    const addorder = dirname ? `cp -rf ./${path}/** ./push/${dirname}/` : `cp -r ./${path}/** ./push/`;
+    const deleteorder = dirname ? `rm -rf ./push/${dirname}/` : `find ./push -name "*.js" -o -name "*.css" -o -name "*.html"`;
+    const addorder = dirname ? `cp -rf ./${path}/ ./push/${dirname}/` : `cp -r ./${path}/ ./push/`;
     const deleteres = await ExecTool.run(deleteorder);
     const addres = await ExecTool.run(addorder);
     return addres;

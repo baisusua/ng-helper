@@ -10,7 +10,7 @@ const run = function(order, path) {
             args, {
                 cwd: path ? path : publicPath,
                 stdio: 'inherit',
-                maxBuffer: 2000 * 1024
+                maxBuffer: 4000 * 1024
             },
         );
         if (child.stdout) {
