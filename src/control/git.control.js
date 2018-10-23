@@ -78,11 +78,11 @@ const GitTask = async function(env, message, isOPen, isSHow, cb) {
             let cndurl;
             if (config.cdn[env].url && config.cdn[env].ak && config.cdn[env].sk && config.cdn[env].bk) {
                 cndurl = config.cdn[env].url;
-                if (config.cdn[env].v) {
-                    cndurl = cndurl ? cndurl + `${config.cdn[env].v}/` : '';
-                }
                 if (config.cdn[env].dirname) {
                     cndurl = cndurl ? cndurl + `${config.cdn[env].dirname}/` : '';
+                }
+                if (config.cdn[env].v) {
+                    cndurl = cndurl ? cndurl + `${config.cdn[env].v}/` : '';
                 }
             };
             if (cndurl) {
