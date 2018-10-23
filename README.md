@@ -72,12 +72,13 @@
 ```json
 {
   "dev": {
-    "url": "http://xxxxxxxx/", //资源地址 url+"v/dirname/"+file
+    "url": "http://xxxxxxxx/", //资源地址 url+"dirname/v/"+file
     "dirname": "ng-helper-dev",
     "ak": "xxxxxxxx",
     "sk": "xxxxxxxx",
     "bk": "xxxxxxxx",
     "v": "0.0.1",
+    "zone": "Zone_z0", //Zone_z0、Zone_z1、Zone_z2、Zone_na0、Zone_as0 参考七牛node sdk下的zone.js文件
     "ignore": [ // 以下类型文件不会被上传到CDN
       "*.html"
     ]
@@ -89,6 +90,7 @@
     "sk": "xxxxxxxx",
     "bk": "xxxxxxxx",
     "v": "0.0.1",
+    "zone": "Zone_z0",
     "ignore": [
       "*.html"
     ]
