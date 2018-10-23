@@ -2,7 +2,7 @@ const colors = require('colors');
 const GitService = require('../service/github.run');
 const GetConfigData = require('../service/order.config');
 const replace = require('replace-in-file');
-const open = require("open");
+const open = require('open');
 
 const OpenRemote = function(remote) {
     let url;
@@ -12,18 +12,19 @@ const OpenRemote = function(remote) {
     } else {
         if (remote.indexOf('git@ssh-') > -1) {
             /* gitlab */
-            url = remote.replace('git@ssh-', 'https://');
-            url = url.replace(':', '/');
+            url = remote.replace(':', '/');
+            url = url.replace('git@ssh-', 'https://');
             url = url.replace('.git', '');
 
         } else {
             /* github */
-            url = remote.replace('git@', 'https://');
-            url = url.replace(':', '/');
+            url = remote.replace(':', '/');
+            url = url.replace('git@', 'https://');
             url = url.replace('.git', '');
         }
     }
     if (url) {
+        console.log(`open publish rempote web. Remote: ${url}`.green);
         open(url);
     } else {
         console.log(`open publish rempote error. Remote: ${remote}`.red);
@@ -151,3 +152,4 @@ const GitClean = async function(cb) {
 }
 module.exports.GitTask = GitTask;
 module.exports.GitClean = GitClean;
+OpenRemote('git@ssh-gitlab.jpushoa.com:frontend-publish/op-server-frontend.git')
