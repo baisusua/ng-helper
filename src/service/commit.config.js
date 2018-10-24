@@ -33,7 +33,7 @@ const GetPackageVersion = async function(isTag) {
     let res = {
         status: false
     }
-    if (!isTag) {
+    if (isTag) {
         res = await ExecTool.run(`npm version patch`);
     }
     if (!res.status) {

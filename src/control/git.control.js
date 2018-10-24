@@ -6,6 +6,7 @@ const open = require('open');
 
 const OpenRemote = function(remote) {
     let url;
+    console.log(colors.rainbow(remote));
     if (remote.indexOf('http') > -1) {
         url = remote.replace('http', 'https');
         url = url.replace('.git', '');
@@ -23,6 +24,7 @@ const OpenRemote = function(remote) {
             url = url.replace('.git', '');
         }
     }
+    console.log(colors.rainbow(url));
     if (url) {
         console.log(`open publish rempote web. Remote: ${url}`.green);
         open(url);
@@ -30,7 +32,7 @@ const OpenRemote = function(remote) {
         console.log(`open publish rempote error. Remote: ${remote}`.red);
     }
 }
-const GitTask = async function(env, message, isOPen, isSHow, cb) {
+const GitTask = async function(env, message, isOPen, isShow, cb) {
     const config = await GetConfigData(env);
     if (config.github) {
         if (message) {
@@ -64,7 +66,7 @@ const GitTask = async function(env, message, isOPen, isSHow, cb) {
         }
 
         /* 在index.html 添加调试信息*/
-        if (isSHow) {
+        if (isShow) {
             console.log('');
             console.log(`Start add console message`.cyan);
             const addinfo = await replace({
@@ -129,6 +131,9 @@ const GitTask = async function(env, message, isOPen, isSHow, cb) {
                 return;
             }
             const push = await GitService.GitRun(GitConfig.push);
+            if (isOPen) {
+                OpenRemote(config.github.remote);
+            }
             cb(push);
         } else {
             const commit = await GitService.GitRun(GitConfig.commit);

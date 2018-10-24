@@ -29,7 +29,7 @@ const CreateGitOrder = function(config) {
         add: `git add -A -f`,
         reset: '',
         checkout: `git checkout -b ${config.branch}`,
-        commit: `git commit -m ${config.message?config.message:JSON.stringify(new Date())}`,
+        commit: `git commit -m "${config.message?config.message:JSON.stringify(new Date())}"`,
         remote: `git remote add origin ${config.remote}`,
         pull: `git pull origin ${config.branch}`,
         push: `git push origin ${config.branch}`

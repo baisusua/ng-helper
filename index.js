@@ -33,7 +33,7 @@ program
         'production'
     )
     .option(
-        '-tag, --dist-tag [value]',
+        '-tag, --distTag [value]',
         `选择是否给源代码打tag和升级版本号，默认开启
         false //关闭给源代码打tag和升级版本号的功能, 
         true //开启给源代码打tag和升级版本号的功能`,
@@ -96,10 +96,10 @@ if (!program.args.length) {
         return null;
     }
     if (program.args[0] === 'publish') {
-        GetCommitMessage(program.message, (message) => {
+        GetCommitMessage(program.message == 'commit' ? 'commit' : 'version', program.distTag == 'false' ? false : true, (message) => {
             BuildWeb(program.env, (res) => {
                 if (res.status) {
-                    PushWeb.GitTask(program.env, message, program.open, program.show, (res) => {
+                    PushWeb.GitTask(program.env, message, program.open == 'false' ? false : true, program.show == 'false' ? false : true, (res) => {
                         if (res.status) {
                             console.log(``);
                         } else {
