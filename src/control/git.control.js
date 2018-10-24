@@ -6,7 +6,6 @@ const open = require('open');
 
 const OpenRemote = function(remote) {
     let url;
-    console.log(colors.rainbow(remote));
     if (remote.indexOf('http') > -1) {
         url = remote.replace('http', 'https');
         url = url.replace('.git', '');
@@ -24,9 +23,8 @@ const OpenRemote = function(remote) {
             url = url.replace('.git', '');
         }
     }
-    console.log(colors.rainbow(url));
     if (url) {
-        console.log(`open publish rempote web. Remote: ${url}`.green);
+        console.log(`open publish rempote web. Url: ${url}`.green);
         open(url);
     } else {
         console.log(`open publish rempote error. Remote: ${remote}`.red);
