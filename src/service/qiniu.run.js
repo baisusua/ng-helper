@@ -29,7 +29,7 @@ const CreateUploadList = function(config, path, cb) {
                             const a = file.split(path);
                             list.push({
                                 path: file,
-                                key: `${config.dirname}/${config.v}` + a[1]
+                                key: `${config.dirname}/${config.v}/` + a[1]
                             })
                         }
                     })
